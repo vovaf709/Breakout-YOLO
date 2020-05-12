@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Webcam Stream</title>
+ 
+</head>
+<style> 
+    body { padding: 0; margin: 0; } 
+    canvas { background: #000000; display: block; margin: 0 auto; } 
+    body {background-color: #000000}
+</style>
+<body>
+	<video id="videoElement">
+	
+	</video>
+
+<canvas id="myCanvas" width="900" height="563"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"> </script> 
+<script>
+alert('ura');
+const model = tf.loadGraphModel('http://localhost:5000/model.json');
+model.summary()
+alert('ura');
+
+</script>
+</body>
+</html>         
