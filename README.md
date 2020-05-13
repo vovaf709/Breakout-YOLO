@@ -19,7 +19,7 @@ conda install flask
 ```bash
 pip install flask
 ```
-After installation go to [flask](https://github.com/vovaf709/Breakout-YOLO/tree/master/flask) directory and run app.py:
+After installation go to [flask](https://github.com/vovaf709/Breakout-YOLO/tree/master/flask) directory and run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/app.py):
 ```bash
 cd flask
 python app.py
