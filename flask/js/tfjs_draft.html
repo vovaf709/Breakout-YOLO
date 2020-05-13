@@ -313,7 +313,9 @@ context.fillText("[FPS]: " + FPS, 10, 20)
 var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("videoElement");
 var model = new TinyYoloV3();
+var time1 = Date.now()
 model.load("http://127.0.0.1:5000/js/models/yolov3-tiny_10k_graph/model.json").then(model => {
+	console.log(Date.now() - time1)
   beginVideo()
 })
 //runWebDetection()
