@@ -40,6 +40,7 @@ python app.py
 * [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet)
 * [Yolo v3 official paper](https://arxiv.org/abs/1804.02767)
 * [TensorFlowJS](https://github.com/tensorflow/tfjs)
+* [Dude who made a big contribution to the game script code](https://github.com/MeneTelk0)
 
 
 
