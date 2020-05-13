@@ -1,5 +1,5 @@
 # Breakout-YOLO
-![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/logo_yolo.png)
+![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/logo_yolo.png)  
 Breakout-YOLO is a classic browser game that can be controlled by gestures. See YOLO.pdf for details.
 ## TODO
 - [ ] structure code
@@ -31,7 +31,7 @@ python app.py
 ![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/2.png)
 + use "finger up" gesture to click on buttons in main menu or to pause game  
 ![finger up](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/1.png)
-+ use "fist" gesture to move paddle 
++ use "fist" gesture to move paddle  
 ![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/4.png)
 + use "pistol" gesture to detach ball from sticky paddle  
 ![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/3.png)
