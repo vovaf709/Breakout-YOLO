@@ -1,7 +1,7 @@
 # Breakout-YOLO
 ![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/logo_yolo.png)  
 Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
-## TODO
+## Tasks
 - [ ] structure code
 - [ ] add bounding box rendering in game
 - [ ] move detection part to worker.js and use Worker API for parallelization of object detection and drawing
@@ -10,7 +10,7 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 - [ ] add more gestures and game bonuses 
 ## Getting started
 
-For now only Flask is required. Install it in a way appropriate for your OS. For Linux:
+For now only **Flask** is required. Install it in a way appropriate for your OS. For Linux:
 #### Conda (Recommended)
 ```bash
 conda install flask
