@@ -1,6 +1,6 @@
 # Breakout-YOLO
 ![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/logo_yolo.png)  
-Breakout-YOLO is a classic browser game that can be controlled by gestures. See YOLO.pdf for details.
+Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
 ## TODO
 - [ ] structure code
 - [ ] add bounding box rendering in game
@@ -34,7 +34,12 @@ python app.py
 + use "fist" gesture to move paddle  
 ![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/4.png)
 + use "pistol" gesture to detach ball from sticky paddle  
-![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/3.png)
+![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/3.png)  
+## Acknowledgments
+* [Yolov3 Keras implementation](https://github.com/qqwweee/keras-yolo3)
+* [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet)
+* [Yolo v3 official paper](https://arxiv.org/abs/1804.02767)
+* [TensorFlowJS](https://github.com/tensorflow/tfjs)
 
 
 
