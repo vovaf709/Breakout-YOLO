@@ -6,7 +6,6 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 - [ ] add bounding box rendering in game
 - [ ] move detection part to worker.js and use Worker API for parallelization of object detection and drawing
 - [ ] add images without gestures to dataset(and train model on this) to decrease number of false positives
-- [ ] recalculate anchor boxes for 256x256 and 192x192 models and train models with them
 - [ ] add more gestures and game bonuses 
 
 ## Getting started
@@ -31,6 +30,16 @@ python app.py
 ```
 + go to http://127.0.0.1:5000/game/src/demo.html in your browser to run demonstration 
 + go to http://127.0.0.1:5000/game/src/index.html in your browser to play game   
+If you get  
+```bash
+OSError: [Errno 98] Address already in use
+```
+then there is another process listening on the port 5000. Just find its PID and kill by:
+```bash
+lsof -i :5000
+kill -9 PID
+```
+
 ## Performance
 
 |              Device+CPU+GPU           |FPS |
