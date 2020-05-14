@@ -8,8 +8,9 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 - [ ] add images without gestures to dataset(and train model on this) to decrease number of false positives
 - [ ] recalculate anchor boxes for 256x256 and 192x192 models and train models with them
 - [ ] add more gestures and game bonuses 
-## Getting started
 
+## Getting started
+**Chromium**(version >= 81.0.4044.138) and **Firefox**(version >= 76.0.1) are supported.
 For now only **Flask** is required. Install it in a way appropriate for your OS. For Linux:
 #### Conda (Recommended)
 ```bash
@@ -25,7 +26,14 @@ cd flask
 python app.py
 ```
 + go to http://127.0.0.1:5000/js/tfjs_draft.html in your browser to run demonstration 
-+ go to http://127.0.0.1:5000/js/index.html in your browser to play game  
++ go to http://127.0.0.1:5000/js/index.html in your browser to play game   
+## Performance
+
+|              Device+CPU+GPU           |FPS |
+|:-------------------------------------:|:--:|
+|  ASUS Vivobook S15, i7 1.8GHz, MX250  | 37 |
+|  Lenovo IdeaPad 520 i5 2.5GHz, 940MX  | 25 |
+|  Acer Aspire V5, i3 1.8GHz, GT 740M   | 16 |
 ## Game Controls 
 + use "circle" gesture to move cursor in main menu or to unpause game  
 ![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/2.png)
