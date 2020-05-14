@@ -29,7 +29,8 @@ After installation run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/m
 python app.py
 ```
 + go to http://127.0.0.1:5000/game/src/demo.html in your browser to run demonstration 
-+ go to http://127.0.0.1:5000/game/src/index.html in your browser to play game   
++ go to http://127.0.0.1:5000/game/src/index.html in your browser to play game  
+
 If you get
 ```bash
 OSError: [Errno 98] Address already in use
