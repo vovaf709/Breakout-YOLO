@@ -10,7 +10,7 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 - [ ] add more gestures and game bonuses 
 
 ## Getting started
-**Chromium**(version >= 81.0.4044.138) and **Firefox**(version >= 76.0.1) are supported.
+**Chromium**(version >= 81.0.4044.138) and **Firefox**(version >= 76.0.1) are supported.  
 For now only **Flask** is required. Install it in a way appropriate for your OS. For Linux:
 #### Conda (Recommended)
 ```bash
