@@ -1,5 +1,5 @@
 # Breakout-YOLO
-![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/logo_yolo.png)  
+![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/logo_yolo.png)  
 Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
 ## Tasks
 - [ ] structure code
@@ -40,13 +40,13 @@ python app.py
 |  Acer Aspire V5, i3 1.8GHz, GT 740M   | 16 |
 ## Game Controls 
 + use "circle" gesture to move cursor in main menu or to unpause game  
-![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/2.png)
+![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/2.png)
 + use "finger up" gesture to click on buttons in main menu or to pause game  
-![finger up](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/1.png)
+![finger up](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/1.png)
 + use "fist" gesture to move paddle  
-![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/4.png)
+![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/4.png)
 + use "pistol" gesture to detach ball from sticky paddle  
-![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/js/Images/3.png)  
+![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/3.png)  
 ## Acknowledgments
 * [Yolov3 Keras implementation](https://github.com/qqwweee/keras-yolo3)
 * [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet)
