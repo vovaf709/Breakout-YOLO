@@ -11,14 +11,19 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 
 ## Getting started
 **Chromium**(version >= 81.0.4044.138) and **Firefox**(version >= 76.0.1) are supported.  
-For now only **Flask** is required. Install it in a way appropriate for your OS. For Linux:
+For now only **Flask** is required. Install it in a way appropriate for your OS.
+For Linux just run following comands:
 #### Conda (Recommended)
 ```bash
-conda install flask
+conda env create -f breakout.yml  
+conda activate breakout  
 ```
+or  
 #### Pip
 ```bash
-pip install flask
+python -m venv breakout  
+source ./breakout/bin/activate  
+pip install -r requirements.txt
 ```
 After installation go to [flask](https://github.com/vovaf709/Breakout-YOLO/tree/master/flask) directory and run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/app.py):
 ```bash
