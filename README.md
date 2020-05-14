@@ -25,13 +25,12 @@ python -m venv breakout
 source ./breakout/bin/activate  
 pip install -r requirements.txt
 ```
-After installation go to [flask](https://github.com/vovaf709/Breakout-YOLO/tree/master/flask) directory and run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/master/flask/app.py):
+After installation run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/master/app.py):
 ```bash
-cd flask
 python app.py
 ```
-+ go to http://127.0.0.1:5000/js/tfjs_draft.html in your browser to run demonstration 
-+ go to http://127.0.0.1:5000/js/index.html in your browser to play game   
++ go to http://127.0.0.1:5000/game/src/demo.html in your browser to run demonstration 
++ go to http://127.0.0.1:5000/game/src/index.html in your browser to play game   
 ## Performance
 
 |              Device+CPU+GPU           |FPS |

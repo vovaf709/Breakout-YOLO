@@ -57,7 +57,7 @@ class TinyYoloV3 {
 	
 	async predict(input, flipHorizontal=true) {
 		this.imgSize = input.constructor.name === 'HTMLVideoElement' ? [input.videoHeight, input.videoWidth] : [input.height, input.width]
-		console.log(this.imgSize)
+		//console.log(this.imgSize)
 		
 		let features = tf.tidy(() => {			
 			//const canvas = document.createElement('canvas')
@@ -183,28 +183,6 @@ class TinyYoloV3 {
 
 		return [boxes, boxScores]
 	}
-}
-
-async function runImgExample() {
-  	const model = new TinyYoloV3();
-  	await model.load("http://127.0.0.1:5000/js/model.json");
-  	var boxes = await model.detectAndBox(img, false);
-
-  	var canvas = document.getElementById("myCanvas");
-  	var context = canvas.getContext("2d");
-
-  	context.drawImage(img, 10, 30, 640, 480);
-
-  	context.beginPath();
-  	context.lineWidth = "4";
-  	context.strokeStyle = "green";
-  	context.rect(10+boxes[0]["left"]*640/416, 30+boxes[0]["top"]*480/416, boxes[0]["width"]*640/416, boxes[0]["height"]*480/416);
-  	context.stroke();
-
-  	context.font = "25px Arial";
-  	context.strokeStyle = "red";
-  	context.lineWidth = "2";
-  	context.strokeText(boxes[0]["label"], 10+boxes[0]["left"]*640/416, 30+boxes[0]["top"]*480/416); 
 }
 
 function startVideo(video) {
@@ -372,13 +350,13 @@ async function runDetection() {
 
 //Картинка меню паузы и старта игры
 	var pauseImage = new Image();
-	pauseImage.src = "Images/pause.png";
+	pauseImage.src = "../images/pause.png";
 
 	var pauseContinueImage = new Image();
-	pauseContinueImage.src = "Images/pauseContinue.png";
+	pauseContinueImage.src = "../images/pauseContinue.png";
 
 	var spaceStartImage = new Image();
-	spaceStartImage.src = "Images/spaceStart.png";
+	spaceStartImage.src = "../images/spaceStart.png";
 
 //Прозрачность картинок меню паузы и старта игры
 	var opacity = 1;
@@ -386,16 +364,16 @@ async function runDetection() {
 
 //background image - все картинки фона в игре
     var backgroundImageLvl1 = new Image();
-    backgroundImageLvl1.src = "Images/lvl1.png";
+    backgroundImageLvl1.src = "../images/lvl1.png";
     
     var backgroundImageLvl2 = new Image();
-    backgroundImageLvl2.src = "Images/lvl2.png";
+    backgroundImageLvl2.src = "../images/lvl2.png";
     
     var backgroundImageLvl3 = new Image();
-    backgroundImageLvl3.src = "Images/lvl3.png";
+    backgroundImageLvl3.src = "../images/lvl3.png";
     
     var backgroundImageLvl4 = new Image();
-    backgroundImageLvl4.src = "Images/lvl4.png";
+    backgroundImageLvl4.src = "../images/lvl4.png";
     var levelcount = 1
 	//Переключатель картинок фона в зависимости от уровня
     function drawbackground(){
@@ -419,42 +397,42 @@ async function runDetection() {
 
 //Звуки
 	//Звук проигрыша
-	var lossSound = new Audio('Sounds/loss.mp3');
+	var lossSound = new Audio('../sounds/loss.mp3');
 	lossSound.volume = 1;
 
 	//Звук разбивания блока наверху
-	var scoreUpSound = new Audio('Sounds/score_up.mp3');
+	var scoreUpSound = new Audio('../sounds/score_up.mp3');
 	scoreUpSound.volume = 0.6;
 
 	//Звуки бонуса с увеличением и уменьшением платформы
 		//Увеличение
-	var PBonusPlus = new Audio('Sounds/PBonus+.mp3');
+	var PBonusPlus = new Audio('../sounds/PBonus+.mp3');
 	PBonusPlus.volume = 1;
 		//Уменьшение
-	var PBonusMinus = new Audio('Sounds/PBonus-.mp3');
+	var PBonusMinus = new Audio('../sounds/PBonus-.mp3');
 	PBonusMinus.volume = 1;
 
 	//Звук липкого бонуса
-	var SBonus = new Audio('Sounds/SBonus.mp3');
+	var SBonus = new Audio('../sounds/SBonus.mp3');
 	SBonus.volume = 1;
 
 	//Музыка на уровнях
-	var lvl1ThemeSound = new Audio('Sounds/lvl1_theme.mp3');
+	var lvl1ThemeSound = new Audio('../sounds/lvl1_theme.mp3');
 	lvl1ThemeSound.volume = 0.5;
-	var lvl2ThemeSound = new Audio('Sounds/lvl4_theme.mp3');
+	var lvl2ThemeSound = new Audio('../sounds/lvl4_theme.mp3');
 	lvl2ThemeSound.volume = 0.5;
-	var lvl3ThemeSound = new Audio('Sounds/lvl2_theme.mp3');
+	var lvl3ThemeSound = new Audio('../sounds/lvl2_theme.mp3');
 	lvl3ThemeSound.volume = 0.5;
-	var lvl4ThemeSound = new Audio('Sounds/lvl1_theme.mp3');
+	var lvl4ThemeSound = new Audio('../sounds/lvl1_theme.mp3');
 	lvl4ThemeSound.volume = 0.5;
-	var tick = new Audio('Sounds/ticktack.mp3');
-	var tick_fast = new Audio('Sounds/ticktack_fast.mp3');
+	var tick = new Audio('../sounds/ticktack.mp3');
+	var tick_fast = new Audio('../sounds/ticktack_fast.mp3');
 	tick.volume = 0.5;
 	tick_fast.volume = 0.5;
 	tickedm = 0;
 
 	//Звук победы
-	var winSound = new Audio('Sounds/win.mp3');
+	var winSound = new Audio('../sounds/win.mp3');
 	
 //Функция выбора фоновой музыки в зависимости от уровня
 	function playMusic() {
@@ -1353,7 +1331,7 @@ async function runDetection() {
 	var post = 0
 	var model = new TinyYoloV3();
 	//var myWorker = new Worker("worker.js");
-	model.load("http://127.0.0.1:5000/js/models/yolov3-tiny_12k_graph/model.json").then(model => {
+	model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
 		beginVideo()
 		timeId = setInterval(step, videoInterval);
 		//step()

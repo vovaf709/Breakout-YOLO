@@ -63,7 +63,7 @@ class TinyYoloV3 {
 	
 	async predict(input, flipHorizontal=true) {
 		this.imgSize = input.constructor.name === 'HTMLVideoElement' ? [input.videoHeight, input.videoWidth] : [input.height, input.width]
-		console.log(this.imgSize)
+		//console.log(this.imgSize)
 		
 		let features = tf.tidy(() => {			
 			//const canvas = document.createElement('canvas')
@@ -290,8 +290,8 @@ async function runDetection() {
                     //Остановка музыки
                     mainMenuTheme.pause();
 
-                    //Переход в файл game_script.html
-                    document.location.href = "game_script.html";
+                    //Переход в файл game.html
+                    document.location.href = "game.html";
 
                     //Удаление listener'ов для мыши
                     canvas.removeEventListener("mousemove", checkPos);
@@ -408,26 +408,26 @@ async function runDetection() {
     var time = 0.0;
 
 //Сорсы картинок
-    backgroundImage.src = "Images/background.png";
-    logoImage.src = "Images/logo.png";  
-	yoloImage.src = "Images/yolo.png";  
-    playImage.src = "Images/play.png";
-    ratingImage.src = "Images/rating.png";
-    ballImage.src = "Images/ball.png";
-    snowImage.src = "Images/snow.png";
+    backgroundImage.src = "../images/background.png";
+    logoImage.src = "../images/logo.png";  
+	yoloImage.src = "../images/yolo.png";  
+    playImage.src = "../images/play.png";
+    ratingImage.src = "../images/rating.png";
+    ballImage.src = "../images/ball.png";
+    snowImage.src = "../images/snow.png";
 
 //Инициализация массива изображений
 	var Images = [];
 	for(var i = 0; i < 3; i++) {
 		Images[i] = new Image();
 	}
-	Images[0].src = "Images/background.png";
-	Images[1].src = "Images/lvl1.png";
-	Images[2].src = "Images/background1.png";
+	Images[0].src = "../images/background.png";
+	Images[1].src = "../images/lvl1.png";
+	Images[2].src = "../images/background1.png";
 
 
 //Музыка меню
-	var mainMenuTheme = new Audio('Sounds/main_menu_theme.mp3');
+	var mainMenuTheme = new Audio('../sounds/main_menu_theme.mp3');
 	var sound = 0;
     
   
@@ -576,8 +576,8 @@ function checkClick1(mouseEvent){
                     //Остановка музыки
                     mainMenuTheme.pause();
 
-                    //Переход в файл game_script.html
-                    document.location.href = "game_script.html";
+                    //Переход в файл game.html
+                    document.location.href = "game.html";
 
                     //Удаление listener'ов для мыши
                     canvas.removeEventListener("mousemove", checkPos);
@@ -611,7 +611,7 @@ function checkClick2(mouseEvent){
 	var ctx = canvas.getContext("2d");
     var model = new TinyYoloV3();
 	alert('START')
-    model.load("http://127.0.0.1:5000/js/models/yolov3-tiny_12k_graph/model.json").then(model => {
+    model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
 	    beginVideo()
 		//timeId = setInterval(step, videoInterval);
         timeId = setInterval(update, 1000/frames);

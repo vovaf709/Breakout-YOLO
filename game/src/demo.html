@@ -52,7 +52,7 @@ class TinyYoloV3 {
 	* @param {url} link path to model.json weights
 	*/
 
-  async load( url = 'http://127.0.0.1:5000/js/yolov3-tiny/model.json' ) {
+  async load(url) {
 		this.model = await tf.loadGraphModel(url)
     console.log('Model loaded')
 	}
@@ -196,28 +196,6 @@ class TinyYoloV3 {
 	}
 }
 
-async function runImgExample() {
-  const model = new TinyYoloV3();
-  await model.load("http://127.0.0.1:5000/js/model.json");
-  var boxes = await model.detectAndBox(img, false);
-
-  var canvas = document.getElementById("myCanvas");
-  var context = canvas.getContext("2d");
-
-  context.drawImage(img, 10, 30, 640, 480);
-
-  context.beginPath();
-  context.lineWidth = "4";
-  context.strokeStyle = "green";
-  context.rect(10+boxes[0]["left"]*640/416, 30+boxes[0]["top"]*480/416, boxes[0]["width"]*640/416, boxes[0]["height"]*480/416);
-  context.stroke();
-
-  context.font = "25px Arial";
-  context.strokeStyle = "red";
-  context.lineWidth = "2";
-  context.strokeText(boxes[0]["label"], 10+boxes[0]["left"]*640/416, 30+boxes[0]["top"]*480/416); 
-}
-
 function startVideo(video) {
   // Video must have height and width in order to be used as input for NN
   // Aspect ratio of 3/4 is used to support safari browser.
@@ -314,7 +292,7 @@ var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("videoElement");
 var model = new TinyYoloV3();
 var time1 = Date.now()
-model.load("http://127.0.0.1:5000/js/models/yolov3-tiny_10k_graph/model.json").then(model => {
+model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_10k_graph/model.json").then(model => {
 	console.log(Date.now() - time1)
   beginVideo()
 })
