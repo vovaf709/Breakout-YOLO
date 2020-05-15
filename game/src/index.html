@@ -428,6 +428,7 @@ async function runDetection() {
 
 //Музыка меню
 	var mainMenuTheme = new Audio('../sounds/main_menu_theme.mp3');
+	mainMenuTheme.volume = 0.5;
 	var sound = 0;
     
   
@@ -474,6 +475,9 @@ async function runDetection() {
 
 //Обновление всей картинки и всего-всего
     function update() {
+        clear();
+        move();
+        step()
 		if (sound == 0) {
 			mainMenuTheme.play();
 			sound++;
@@ -481,9 +485,6 @@ async function runDetection() {
 		if (mainMenuTheme.ended == true) {
 			sound = 0;
 		}
-        clear();
-        move();
-        step()
     }
 
     function step() {
@@ -610,8 +611,9 @@ function checkClick2(mouseEvent){
     var initial_seed = 0;
 	var ctx = canvas.getContext("2d");
     var model = new TinyYoloV3();
-	alert('START')
+	alert('Loading model...')
     model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
+		alert('Model loaded!')
 	    beginVideo()
 		//timeId = setInterval(step, videoInterval);
         timeId = setInterval(update, 1000/frames);

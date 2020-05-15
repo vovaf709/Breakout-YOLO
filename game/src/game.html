@@ -286,7 +286,10 @@ async function runDetection() {
 			}
 			else if (boxes[i]["label"] == "pistol") {
 				spacePressed = 1;
-				sticked = 0
+				if (sticked == 1){
+					fireSound.play()
+				}
+				sticked = 0;
 			}
 			else if ((boxes[i]["label"] == "finger up") && (pause == 0) && (score > 0)) {
 							spacePressed = false;
@@ -400,6 +403,10 @@ async function runDetection() {
 	var lossSound = new Audio('../sounds/loss.mp3');
 	lossSound.volume = 1;
 
+	//Звук отрыва с липкой платформы
+	var fireSound = new Audio('../sounds/fire.mp3');
+	fireSound.volume = 1;
+
 	//Звук разбивания блока наверху
 	var scoreUpSound = new Audio('../sounds/score_up.mp3');
 	scoreUpSound.volume = 0.6;
@@ -419,11 +426,11 @@ async function runDetection() {
 	//Музыка на уровнях
 	var lvl1ThemeSound = new Audio('../sounds/lvl1_theme.mp3');
 	lvl1ThemeSound.volume = 0.5;
-	var lvl2ThemeSound = new Audio('../sounds/lvl4_theme.mp3');
+	var lvl2ThemeSound = new Audio('../sounds/lvl2_theme.mp3');
 	lvl2ThemeSound.volume = 0.5;
-	var lvl3ThemeSound = new Audio('../sounds/lvl2_theme.mp3');
+	var lvl3ThemeSound = new Audio('../sounds/lvl3_theme.mp3');
 	lvl3ThemeSound.volume = 0.5;
-	var lvl4ThemeSound = new Audio('../sounds/lvl1_theme.mp3');
+	var lvl4ThemeSound = new Audio('../sounds/lvl4_theme.mp3');
 	lvl4ThemeSound.volume = 0.5;
 	var tick = new Audio('../sounds/ticktack.mp3');
 	var tick_fast = new Audio('../sounds/ticktack_fast.mp3');
