@@ -1,4 +1,3 @@
-# Breakout-YOLO
 ![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/logo_yolo.png)  
 Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
 ## Tasks
