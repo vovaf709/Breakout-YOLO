@@ -611,9 +611,7 @@ function checkClick2(mouseEvent){
     var initial_seed = 0;
 	var ctx = canvas.getContext("2d");
     var model = new TinyYoloV3();
-	alert('Loading model...')
     model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
-		alert('Model loaded!')
 	    beginVideo()
 		//timeId = setInterval(step, videoInterval);
         timeId = setInterval(update, 1000/frames);

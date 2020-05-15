@@ -291,7 +291,7 @@ async function runDetection() {
 				}
 				sticked = 0;
 			}
-			else if ((boxes[i]["label"] == "finger up") && (pause == 0) && (score > 0)) {
+			else if ((boxes[i]["label"] == "finger up") && (pause == 0) && (first_collision > 0)) {
 							spacePressed = false;
 							begun = 1;
 							pause = 1;
@@ -511,6 +511,7 @@ async function runDetection() {
 
 //Счет
 	var score = 0;
+	var first_collision = 0;
 	if(levelcount > 1){
 		score = parseInt(sessionStorage.getItem('score'));
 	}
@@ -521,7 +522,7 @@ async function runDetection() {
 		var speed = 3;
 	}
 	if (levelcount > 1){
-		speed = parseInt(sessionStorage.getItem('speed'));
+		speed = parseInt(sessionStorage.getItem('speed')) + 1;
 
 		//Увеличение скорости при переходе на след уровень (для уменьшения сложности игры закомменч)
 		//speed = speed + 1;
@@ -683,6 +684,7 @@ async function runDetection() {
 		if(b.weight == 0) {
 			b.status = 0;
 			score++;
+			first_collision++;
 			scoreUpSound.play();
 			count++;
 		}
@@ -700,6 +702,7 @@ async function runDetection() {
 		if(b.weight == 0) {
 			b.status = 0;
 			score++;
+			first_collision++;
 			scoreUpSound.play();
 			count++;
 		}
@@ -717,6 +720,7 @@ async function runDetection() {
 		if(b.weight == 0) {
 			b.status = 0;
 			score++;
+			first_collision++;
 			scoreUpSound.play();
 			count++;
 		}
