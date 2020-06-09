@@ -1,0 +1,12 @@
+body {
+    background-color: #000000;
+}
+    
+.canvasbox {
+    left: 20%;
+    top: 5%;
+    border-radius: 3px;
+    width: 60%;
+	position: absolute;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 #00000030;
+}
