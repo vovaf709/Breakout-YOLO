@@ -71,6 +71,9 @@ function startVideo(video) {
   
   async function runDetection() {
       model.detectAndBox(video).then(boxes => {
+        if (ready == 0) {
+            ready = 1;
+        }
           var fisted = 0
           //var canvas = document.getElementById("myCanvas");
           //var context = canvas.getContext("2d");
@@ -184,6 +187,9 @@ function startVideo(video) {
       var backgroundImageLvl3 = new Image();
       backgroundImageLvl3.src = "images/lvl3.png";
       
+      var loadingImage = new Image();
+      loadingImage.src = "images/loading.png";
+
       var backgroundImageLvl4 = new Image();
       backgroundImageLvl4.src = "images/lvl4.png";
       var levelcount = 1
@@ -1053,6 +1059,10 @@ function startVideo(video) {
               y = y + speedY;
           }
       }
+      
+      function drawloading() {
+        ctx.drawImage(loadingImage, canvas.width / 2 - loadingImage.width / 2, canvas.height / 2 - loadingImage.height / 2);
+    }
   
       async function game() {
           //requestAnimationFrame(game)
@@ -1116,7 +1126,12 @@ function startVideo(video) {
   
       function step() {
           //requestAnimationFrame(step);
-          draw();
+          if (ready == 1) {
+            draw();
+            }
+         else {
+            drawloading();
+        }
           spacePressed = 0;
           if (begun == 1) {
               if (initial_seed % delay == 0) {
@@ -1131,6 +1146,9 @@ function startVideo(video) {
               if ((initial_seed % delay == 0)) {
                   initial_seed = initial_seed % delay;
                   model.detectAndBox(video).then(boxes => {
+                      if (ready == 0) {
+                          ready = 1;
+                      }
                       for (let i = 0; i < boxes.length; i++) {
                           if ((boxes[i]["label"] == "finger up") && (pause == 0)) {
                               spacePressed = false;
@@ -1150,6 +1168,7 @@ function startVideo(video) {
       var delta = 0
       var post = 0
       var model = new TinyYoloV3();
+      var ready = 0;
       //var myWorker = new Worker("worker.js");
       model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
           beginVideo()

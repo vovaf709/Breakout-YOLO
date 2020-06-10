@@ -1,6 +1,6 @@
 function startVideo(video) {
   	video.width = video.width || 640;
-  	video.height = video.height || video.width * (3 / 4)
+  	video.height = video.height || video.width * (3 / 4);
 
   	return new Promise(function (resolve, reject) {
     	navigator.mediaDevices.getUserMedia({
@@ -9,11 +9,11 @@ function startVideo(video) {
      	}).then(stream => {
        	 	video.srcObject = stream
        	 	video.onloadedmetadata = () => {
-          		video.play()
-          		resolve(true)
+          		video.play();
+          		resolve(true);
         	}
       	}).catch(function (err) {
-        	resolve(false)
+        	resolve(false);
       	});
   	});
 }
@@ -21,19 +21,19 @@ function startVideo(video) {
 function beginVideo() {
 	startVideo(video).then(function(status) {
 		if(status) {
-    		runDetection(true)
+    		runDetection(true);
 		}
 	})
 }
 
 function runDetection(flip) {
-  	var timeBegin = Date.now()
+  	var timeBegin = Date.now();
 
 	model.detectAndBox(video, flip).then(boxes => {
       	var timeEnd = Date.now();
       	var FPS = Math.round(1000 / (timeEnd - timeBegin));
       	var canvas = document.getElementById("myCanvas");
-     	var context = canvas.getContext('2d')
+     	var context = canvas.getContext('2d');
 		 
 		renderPredictions(boxes, canvas, context, video, flip, FPS);
 		requestAnimationFrame(runDetection);
@@ -65,13 +65,13 @@ function renderPredictions(boxes, canvas, context, mediasource, flip, FPS) {
 	for (let i = 0; i < boxes.length; i++) {
   		context.beginPath();
   		context.fillStyle = colors[boxes[i]["label"]];
-  		context.fillRect(boxes[i]["left"], boxes[i]["top"] - 17, boxes[i]["width"], 17)
+  		context.fillRect(boxes[i]["left"], boxes[i]["top"] - 17, boxes[i]["width"], 17);
   		context.rect(boxes[i]["left"], boxes[i]["top"], boxes[i]["width"], boxes[i]["height"]);
 
  		context.lineWidth = 1;
   		context.strokeStyle = colors[boxes[i]["label"]];
   		context.fillStyle = colors[boxes[i]["label"]];
-  		context.fillRect(boxes[i]["left"] + (boxes[i]["width"] / 2), boxes[i]["top"] + (boxes[i]["height"] / 2), 5, 5)
+  		context.fillRect(boxes[i]["left"] + (boxes[i]["width"] / 2), boxes[i]["top"] + (boxes[i]["height"] / 2), 5, 5);
 
 		context.stroke();
 		context.fillStyle = "#000000";  
@@ -82,14 +82,14 @@ function renderPredictions(boxes, canvas, context, mediasource, flip, FPS) {
 
 	context.font = "bold 12px Arial";
 	context.fillStyle = "#000000";
-	context.fillText("[FPS]: " + FPS, 10, 20)
+	context.fillText("[FPS]: " + FPS, 10, 20);
 }
 
 var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("videoElement");
 var model = new TinyYoloV3();
-var time1 = Date.now()
+var time1 = Date.now();
 model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_10k_graph/model.json").then(model => {
-	console.log(Date.now() - time1)
-  	beginVideo()
+	console.log(Date.now() - time1);
+  	beginVideo();
 })

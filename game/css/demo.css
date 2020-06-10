@@ -8,5 +8,9 @@ body {
     border-radius: 3px;
     width: 60%;
 	position: absolute;
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 #00000030;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 #000000;
+}
+
+.videobox {
+    opacity: 0;
 }
