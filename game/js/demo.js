@@ -81,7 +81,7 @@ function renderPredictions(boxes, canvas, context, mediasource, flip, FPS) {
 	}
 
 	context.font = "bold 12px Arial";
-	context.fillStyle = "#000000";
+	context.fillStyle = "#ffffff";
 	context.fillText("[FPS]: " + FPS, 10, 20);
 }
 

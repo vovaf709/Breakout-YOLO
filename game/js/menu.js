@@ -62,23 +62,17 @@ function renderPredictions(boxes, canvas, context, mediasource, flip) {
 		context.stroke();
 		context.fillStyle = "#000000";  
   		context.fillText(
-    		boxes[i]["label"] + ": " + (Math.round(100*parseFloat(boxes[i]["score"]))/100).toString(),
+    		boxes[i]["label"] + ": " + (Math.round(100 * parseFloat(boxes[i]["score"])) / 100).toString(),
     		boxes[i]["left"], boxes[i]["top"]);
 	}
-
-	//context.font = "bold 12px Arial";
-	//context.fillStyle = "#000000";
-	//context.fillText("[FPS]: " + FPS, 10, 20);
 }
   
 async function runDetection() {
+    var time1 = Date.now();
     model.detectAndBox(video).then(boxes => {
         if (ready == 0) {
             ready = 1;
         }
-        //var canvas = document.getElementById("myCanvas");
-        //var context = canvas.getContext("2d");
-        //renderPredictions(boxes, canvas, context, video, true)
         for (let i = 0; i < boxes.length; i++) {
             if (boxes[i]["label"] == "circle") {
                 let rawvalX = boxes[i]["left"] + boxes[i]["width"] / 2;
@@ -95,7 +89,6 @@ async function runDetection() {
                     sessionStorage.setItem('levelcount', 1);
                     mainMenuTheme.pause();
 
-                    //redirect to game.html
                     document.location.href = "game.html";
 
                     canvas.removeEventListener("mousemove", checkPos);
@@ -105,22 +98,23 @@ async function runDetection() {
         }
         if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
             ballVisible = true;
-            ballX[0] = buttonX[0] - (ballWidth/2) - 2;
+            ballX[0] = buttonX[0] - (ballWidth / 2) - 2;
             ballY[0] = buttonY[0] + 40;
-            ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth/2); 
+            ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth / 2); 
             ballY[1] = buttonY[0] + 40;
         }
         else if (mouseX > buttonX[1] && mouseX < buttonX[1] + buttonWidth[1] && mouseY > buttonY[1] && mouseY < buttonY[1] + buttonHeight[1]) {
             ballVisible = true;
             ballX[0] = buttonX[1] - (ballWidth/2) - 2;
             ballY[0] = buttonY[1] + 40;
-            ballX[1] = buttonX[1] + buttonWidth[1] + (ballWidth/2); 
+            ballX[1] = buttonX[1] + buttonWidth[1] + (ballWidth / 2); 
             ballY[1] = buttonY[1] + 40;
         }
         else {
             ballVisible = false; 
         } 
     });
+    FPS = Math.round(1000 / (Date.now() - time1));
 }
 
 function drawFrame() {
@@ -201,7 +195,6 @@ function update() {
 }
 
 function step() {
-    //requestAnimationFrame(step);
     if (ready == 1) {
         draw();
     }
@@ -251,6 +244,9 @@ function draw() {
         ctx.drawImage(ballImage, ballX[1] - (ballSize/2), ballY[1], ballSize, ballHeight);
     }
     drawCursor();
+    ctx.font = "bold 14px Arial";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("FPS: " + FPS, 10, 20);
 }
 
 function checkPos(mouseEvent) {
@@ -280,7 +276,6 @@ function checkClick1(mouseEvent) {
         sessionStorage.setItem("levelcount", 1);
         mainMenuTheme.pause();
 
-        //redirect to game.html
         document.location.href = "game.html";
 
         canvas.removeEventListener("mousemove", checkPos);
@@ -367,10 +362,9 @@ var delay = 2;
 var initial_seed = 0;
 var model = new TinyYoloV3();
 var ready = 0;
+var FPS = 0;
 
 model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
     beginVideo()
-    //timeId = setInterval(step, videoInterval);
     timeId = setInterval(update, 1000/frames);
-    //step()
 })
