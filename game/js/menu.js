@@ -364,7 +364,7 @@ var model = new TinyYoloV3();
 var ready = 0;
 var FPS = 0;
 
-model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
+model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(() => {
     beginVideo()
-    timeId = setInterval(update, 1000/frames);
+    timeId = setInterval(update, 1000 / frames);
 })

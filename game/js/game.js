@@ -1170,7 +1170,7 @@ function startVideo(video) {
       var model = new TinyYoloV3();
       var ready = 0;
       //var myWorker = new Worker("worker.js");
-      model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(model => {
+      model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_12k_graph/model.json").then(() => {
           beginVideo()
           timeId = setInterval(step, videoInterval);
           //step()
