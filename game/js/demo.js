@@ -89,7 +89,7 @@ var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("videoElement");
 var model = new TinyYoloV3();
 var time1 = Date.now();
-model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_10k_graph/model.json").then(model => {
+model.load("http://127.0.0.1:5000/game/models/yolov3-tiny_10k_graph/model.json").then(() => {
 	console.log(Date.now() - time1);
   	beginVideo();
 })

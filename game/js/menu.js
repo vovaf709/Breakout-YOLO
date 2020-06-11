@@ -143,7 +143,7 @@ function drawbackground() {
     ctx.drawImage(backgroundImage, 0, 0);
 }
 
-function backgroundchanger(){ 
+function backgroundchanger() { 
     if (Pressed == true) {
         if (flag == 0) {
             backgroundImage = Images[0];
@@ -240,8 +240,8 @@ function draw() {
     drawplay();
     drawrating();
     if (ballVisible == true) {
-        ctx.drawImage(ballImage, ballX[0] - (ballSize/2), ballY[0], ballSize, ballHeight);
-        ctx.drawImage(ballImage, ballX[1] - (ballSize/2), ballY[1], ballSize, ballHeight);
+        ctx.drawImage(ballImage, ballX[0] - (ballSize / 2), ballY[0], ballSize, ballHeight);
+        ctx.drawImage(ballImage, ballX[1] - (ballSize / 2), ballY[1], ballSize, ballHeight);
     }
     drawCursor();
     ctx.font = "bold 14px Arial";
@@ -283,6 +283,7 @@ function checkClick1(mouseEvent) {
     }
 }
 
+//TODO: remove rating
 function checkClick2(mouseEvent) {
     if (mouseX > buttonX[1] && mouseX < buttonX[1] + buttonWidth[1] && mouseY > buttonY[1] && mouseY < buttonY[1] + buttonHeight[1]) {
         mainMenuTheme.pause();
@@ -354,10 +355,10 @@ var buttonHeight = [100, 100];
 
 var Pressed = false;							
 var flag = -1;
-var prevMouseX = canvas.width/2
-var prevMouseY = canvas.height/2
-var recMouseX = canvas.width/2
-var recMouseY = canvas.height/2
+var prevMouseX = canvas.width / 2;
+var prevMouseY = canvas.height / 2;
+var recMouseX = canvas.width / 2;
+var recMouseY = canvas.height / 2;
 var delay = 2;
 var initial_seed = 0;
 var model = new TinyYoloV3();
