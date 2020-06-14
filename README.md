@@ -1,7 +1,7 @@
 ![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/game/images/logo_yolo.png)  
 Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
 ## Tasks
-- [ ] structure code
+- [x] structure code
 - [ ] add bounding box rendering in game
 - [ ] move detection part to worker.js and use Worker API for parallelization of object detection and drawing
 - [ ] add images without gestures to dataset(and train model on this) to decrease number of false positives
