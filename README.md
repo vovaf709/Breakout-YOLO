@@ -56,13 +56,13 @@ kill -9 PID
 |  Lenovo IdeaPad 520 i5 2.5GHz, 940MX  | 25 |
 |  Acer Aspire V5, i3 1.8GHz, GT 740M   | 16 |
 ## Game Controls 
-+ use "circle" gesture to move cursor in main menu or to unpause game  
++ use «circle» gesture to move cursor in main menu or to unpause game  
 ![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/2.png)
-+ use "finger up" gesture to click on buttons in main menu or to pause game  
++ use «finger up» gesture to click on buttons in main menu or to pause game  
 ![finger up](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/1.png)
-+ use "fist" gesture to move paddle  
++ use «fist» gesture to move paddle  
 ![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/4.png)
-+ use "pistol" gesture to detach ball from sticky paddle  
++ use «pistol» gesture to detach ball from sticky paddle  
 ![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/3.png)  
 ## Acknowledgments
 * [Yolov3 Keras implementation](https://github.com/qqwweee/keras-yolo3)
