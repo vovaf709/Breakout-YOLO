@@ -8,9 +8,9 @@ Breakout-YOLO is a classic browser game that can be controlled by gestures. See 
 - [ ] add more gestures and game bonuses 
 
 ## Getting started
-Press [demo](https://vovaf709.github.io/Breakout-YOLO/demo.html) and [game](https://vovaf709.github.io/Breakout-YOLO/) to immediately enjoy the process.
-
 **Firefox**(version >= 76.0.1)(recommended) and **Chromium**(version >= 81.0.4044.138) are supported.
+
+Press [demo](https://vovaf709.github.io/Breakout-YOLO/demo.html) and [game](https://vovaf709.github.io/Breakout-YOLO/) to immediately enjoy the process(loading may take some time).
 
 If you want(for some reason) to run all things locally follow this instruction:
 
