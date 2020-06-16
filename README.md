@@ -28,6 +28,8 @@ python -m venv breakout
 source ./breakout/bin/activate  
 pip install -r requirements.txt
 ```
+Also you need to change model paths according to comment [here](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/js/demo.js), [here](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/js/game.js) and [here](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/js/demo.js)(I will fix that very soon).
+
 After installation run [app.py](https://github.com/vovaf709/Breakout-YOLO/blob/master/app.py):
 ```bash
 python app.py
