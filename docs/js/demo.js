@@ -89,6 +89,9 @@ var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("videoElement");
 var model = new TinyYoloV3();
 var time1 = Date.now();
+
+//If you want to run it on local server change model path(below) to "http://127.0.0.1:5000/models/yolov3-tiny_12k_graph/model.json"
+
 model.load("models/yolov3-tiny_10k_graph/model.json").then(() => {
 	console.log(Date.now() - time1);
   	beginVideo();
