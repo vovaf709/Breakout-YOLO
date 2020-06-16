@@ -99,16 +99,9 @@ async function runDetection() {
         if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
             ballVisible = true;
             ballX[0] = buttonX[0] - (ballWidth / 2) - 2;
-            ballY[0] = buttonY[0] + 40;
+            ballY[0] = buttonY[0] + 70;
             ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth / 2); 
-            ballY[1] = buttonY[0] + 40;
-        }
-        else if (mouseX > buttonX[1] && mouseX < buttonX[1] + buttonWidth[1] && mouseY > buttonY[1] && mouseY < buttonY[1] + buttonHeight[1]) {
-            ballVisible = true;
-            ballX[0] = buttonX[1] - (ballWidth/2) - 2;
-            ballY[0] = buttonY[1] + 40;
-            ballX[1] = buttonX[1] + buttonWidth[1] + (ballWidth / 2); 
-            ballY[1] = buttonY[1] + 40;
+            ballY[1] = buttonY[0] + 70;
         }
         else {
             ballVisible = false; 
@@ -166,11 +159,7 @@ function drawlogo() {
 }
 
 function drawplay() {
-    ctx.drawImage(playImage, 200, 220);
-}
-
-function drawrating() {
-    ctx.drawImage(ratingImage, 300, 400);
+    ctx.drawImage(playImage, 250, 250);
 }
 
 function drawsnow() {
@@ -238,7 +227,6 @@ function draw() {
     drawsnow();
     drawlogo();
     drawplay();
-    drawrating();
     if (ballVisible == true) {
         ctx.drawImage(ballImage, ballX[0] - (ballSize / 2), ballY[0], ballSize, ballHeight);
         ctx.drawImage(ballImage, ballX[1] - (ballSize / 2), ballY[1], ballSize, ballHeight);
@@ -255,16 +243,9 @@ function checkPos(mouseEvent) {
     if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
         ballVisible = true;
         ballX[0] = buttonX[0] - (ballWidth / 2) - 2;
-        ballY[0] = buttonY[0] + 40;
+        ballY[0] = buttonY[0];
         ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth / 2); 
-        ballY[1] = buttonY[0] + 40;
-    }
-    else if (mouseX > buttonX[1] && mouseX < buttonX[1] + buttonWidth[1] && mouseY > buttonY[1] && mouseY < buttonY[1] + buttonHeight[1]) {
-        ballVisible = true;
-        ballX[0] = buttonX[1] - (ballWidth / 2) - 2;
-        ballY[0] = buttonY[1] + 40;
-        ballX[1] = buttonX[1] + buttonWidth[1] + (ballWidth / 2); 
-        ballY[1] = buttonY[1] + 40;
+        ballY[1] = buttonY[0];
     }
     else {
         ballVisible = false; 
@@ -283,31 +264,19 @@ function checkClick1(mouseEvent) {
     }
 }
 
-//TODO: remove rating
-function checkClick2(mouseEvent) {
-    if (mouseX > buttonX[1] && mouseX < buttonX[1] + buttonWidth[1] && mouseY > buttonY[1] && mouseY < buttonY[1] + buttonHeight[1]) {
-        mainMenuTheme.pause();
-        document.forms["rating"].submit();
-        canvas.removeEventListener("mousemove", checkPos);
-        canvas.removeEventListener("mouseup", checkClick2);   
-    }
-}
-
 var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("myvideo");
 var ctx = canvas.getContext("2d");
 canvas.addEventListener("mousemove", checkPos);
 document.addEventListener("keydown", keyDownHandler, false); 							
 document.addEventListener("keyup", keyUpHandler, false);	
-canvas.addEventListener("mouseup", checkClick1);
-canvas.addEventListener("mouseup", checkClick2); 							
+canvas.addEventListener("mouseup", checkClick1);						
       
 var backgroundImage = new Image(); 
 var snowImage = new Image();   
 var logoImage = new Image();
 var yoloImage = new Image();
 var playImage = new Image();
-var ratingImage = new Image();
 var ballImage = new Image();
 var loadingImage = new Image();
 backgroundImage.src = "images/background.png";
@@ -315,7 +284,6 @@ snowImage.src = "images/snow.png";
 logoImage.src = "images/logo.png";  
 yoloImage.src = "images/yolo.png";  
 playImage.src = "images/play.png";
-ratingImage.src = "images/rating.png";
 ballImage.src = "images/ball.png";
 loadingImage.src = "images/loading.png";
 var Images = [];
@@ -348,7 +316,7 @@ var ballSize = ballWidth;
 var ballRotate = 0;
 var ballRadius = 10;
   
-var buttonX = [205, 300];
+var buttonX = [250, 250];
 var buttonY = [220, 400];
 var buttonWidth = [300, 450];
 var buttonHeight = [100, 100];

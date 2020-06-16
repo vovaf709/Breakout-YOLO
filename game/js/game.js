@@ -835,7 +835,7 @@ var x = 0;
 var y = 0;
 var videoInterval = 10;
 var initial_seed = 0;
-var delay = 20;
+var delay = 10;
   
 var smoothDelta = 0;
 var paddleWidth = 125;
@@ -862,7 +862,6 @@ var opacity = 1;
 var opacityChanger = 0.002;
 
 var pauseImage = new Image();
-var pauseContinueImage = new Image();
 var spaceStartImage = new Image();
 var backgroundImageLvl1 = new Image();
 var backgroundImageLvl2 = new Image();
@@ -870,7 +869,6 @@ var backgroundImageLvl3 = new Image();
 var loadingImage = new Image();
 var backgroundImageLvl4 = new Image();
 pauseImage.src = "images/pause.png";
-pauseContinueImage.src = "images/pauseContinue.png";
 spaceStartImage.src = "images/spaceStart.png";
 backgroundImageLvl1.src = "images/lvl1.png";
 backgroundImageLvl2.src = "images/lvl2.png";
