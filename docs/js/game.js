@@ -668,7 +668,7 @@ function draw() {
     bonusStickyPaddleEffect();
     drawBonusStickyPaddle();
     bonusStickyPaddleCollisionDetection();
-    
+
     drawPaddle();
     drawBricks();
     collisionDetection();
@@ -715,7 +715,7 @@ function draw() {
             }
         }    
     }
-        
+ 
     if (rightPressed && paddleX < canvas.width - paddleWidth && pause == 0) {
         paddleX += 7;
     }
@@ -905,7 +905,7 @@ tick_fast.volume = 0.5;
 winSound.volume = 1;
 
 var tickedm = 0;
-      
+
 if ((parseInt(sessionStorage.getItem("levelcount"))) == 1) {
     var levelcount = 1;
 }
@@ -915,7 +915,7 @@ else {
         levelcount = 1;
     }
 }
-  
+
 var begun = 0;
 var pause = 0;
 
@@ -1036,8 +1036,6 @@ var delta = 0;
 var post = 0;
 var model = new TinyYoloV3();
 var ready = 0;
-
-//If you want to run it on local server change model path(below) to "http://127.0.0.1:5000/models/yolov3-tiny_12k_graph/model.json"
 
 model.load("models/yolov3-tiny_12k_graph/model.json").then(() => {
     beginVideo();
