@@ -7,17 +7,17 @@ class TinyYoloV3 {
 		// anchors are pre-calculated for dataset
 		this.anchor = [  82,93, 66,138, 118,125, 97,172, 133,193, 182,233 ];
 		this.mask = { "3": [[6, 7, 8], [3, 4, 5], [0, 1, 2]],  "2": [[3, 4, 5], [0, 1, 2]] };
-		this.labels = ['fist', 'pistol', 'circle', 'finger up'];
+		this.labels = ["fist", "pistol", "circle", "finger up"];
 		this.nClass = this.labels.length;
 	}
 
   	async load(url) {
 		this.model = await tf.loadGraphModel(url)
-		console.log('Model loaded');
+		console.log("Model loaded");
 	}
 
 	async predict(input, flipHorizontal=true) {
-		this.imgSize = input.constructor.name === 'HTMLVideoElement' ? [input.videoHeight, input.videoWidth] : [input.height, input.width];
+		this.imgSize = input.constructor.name === "HTMLVideoElement" ? [input.videoHeight, input.videoWidth] : [input.height, input.width];
 		
 		let features = tf.tidy(() => {	
 			let imageTensor = tf.browser.fromPixels(input, 3);
@@ -35,7 +35,7 @@ class TinyYoloV3 {
 		return features		
 	}
 	
-	async detectAndBox(input, flipHorizontal=true){
+	async detectAndBox(input, flipHorizontal=true) {
 		const features = await this.predict(input, flipHorizontal);
 		
 		let [boxes, boxScores] = tf.tidy(() => {
@@ -48,7 +48,7 @@ class TinyYoloV3 {
 			let fScores = [];
 
 			for (let i = 0; i < nFeature; i++) {
-				const anchorFeature = anchors_tf.gather(tf.tensor1d(anchorMask[i], 'int32'));
+				const anchorFeature = anchors_tf.gather(tf.tensor1d(anchorMask[i], "int32"));
 				const [boxes, boxScores] = this.getFeatureBox( features[i], anchorFeature, inputShape);
 
 				fBoxes.push(boxes);
@@ -60,7 +60,7 @@ class TinyYoloV3 {
 
 			return [fBoxes, fScores]
 		})
-		
+
 		let boxCoord = [];
 		let scores = [];
 		let labelIdx = [];

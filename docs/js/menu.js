@@ -68,13 +68,15 @@ function renderPredictions(boxes, canvas, context, mediasource, flip) {
 }
   
 async function runDetection() {
-    var time1 = Date.now();
+    circled = 0;
+    let time1 = Date.now();
     model.detectAndBox(video).then(boxes => {
         if (ready == 0) {
             ready = 1;
         }
         for (let i = 0; i < boxes.length; i++) {
             if (boxes[i]["label"] == "circle") {
+                circled = 1;
                 let rawvalX = boxes[i]["left"] + boxes[i]["width"] / 2;
                 let rawvalY = boxes[i]["top"] + boxes[i]["height"] / 2;
 
@@ -85,23 +87,15 @@ async function runDetection() {
                 recMouseY = canvas.height * rawvalY / 480;
             }
             else if (boxes[i]["label"] == "finger up") {
-                if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
-                    sessionStorage.setItem('levelcount', 1);
+                if (mouseX > buttonX && mouseX < buttonX + playImage.width && mouseY > buttonY && mouseY < buttonY + playImage.height) {
+                    sessionStorage.setItem("levelcount", 1);
                     mainMenuTheme.pause();
-
-                    document.location.href = "game.html";
-
-                    canvas.removeEventListener("mousemove", checkPos);
-                    canvas.removeEventListener("mouseup", checkClick1);   
+                    document.location.href = "game.html"; 
                 }
             }
         }
-        if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
+        if (mouseX > buttonX && mouseX < buttonX + playImage.width && mouseY > buttonY && mouseY < buttonY + playImage.height) {
             ballVisible = true;
-            ballX[0] = buttonX[0] - (ballWidth / 2) - 2;
-            ballY[0] = buttonY[0] + 70;
-            ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth / 2); 
-            ballY[1] = buttonY[0] + 70;
         }
         else {
             ballVisible = false; 
@@ -116,41 +110,8 @@ function drawFrame() {
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }
 
-function keyDownHandler(e) { 							
-    if (e.keyCode == 66) {
-        Pressed = true;
-        flag += 1;
-        if (flag == 3) {
-            flag = 0;
-        }
-    }
-}
-
-function keyUpHandler(e) { 							
-    if (e.keyCode == 66) {
-        Pressed = false;
-    }
-}
-
 function drawbackground() {
     ctx.drawImage(backgroundImage, 0, 0);
-}
-
-function backgroundchanger() { 
-    if (Pressed == true) {
-        if (flag == 0) {
-            backgroundImage = Images[0];
-            drawbackground();
-        }
-        else if (flag == 1) {
-            backgroundImage = Images[1];
-            drawbackground();
-        }
-        else if (flag == 2) {
-            backgroundImage = Images[2];
-            drawbackground();
-        }
-    }
 }
 
 function drawlogo() {
@@ -159,7 +120,7 @@ function drawlogo() {
 }
 
 function drawplay() {
-    ctx.drawImage(playImage, 250, 250);
+    ctx.drawImage(playImage, buttonX, buttonY);
 }
 
 function drawsnow() {
@@ -171,9 +132,8 @@ function drawloading() {
 }
 
 function update() {
-    clear();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     move();
-    step();
     if (sound == 0) {
         mainMenuTheme.play();
         sound++;
@@ -181,9 +141,6 @@ function update() {
     if (mainMenuTheme.ended == true) {
         sound = 0;
     }
-}
-
-function step() {
     if (ready == 1) {
         draw();
     }
@@ -194,13 +151,9 @@ function step() {
         initial_seed = initial_seed % delay;
         runDetection();
     }
-    mouseX = mouseX + (recMouseX - prevMouseX) / delay;
-    mouseY = mouseY + (recMouseY - prevMouseY) / delay;
+    mouseX = mouseX + circled * (recMouseX - prevMouseX) / delay;
+    mouseY = mouseY + circled * (recMouseY - prevMouseY) / delay;
     initial_seed++;
-}
-
-function clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function move() {
@@ -218,59 +171,33 @@ function drawCursor() {
     ctx.closePath();
 }
 
-function draw() {
-    if (Pressed == true) {		 							
-        backgroundchanger();
+function drawBall() {
+    if (ballVisible) {
+        ctx.drawImage(ballImage, buttonX - (ballWidth / 2) - (ballWidth / 2), buttonY + (playImage.height / 4), ballWidth, ballHeight);
+        ctx.drawImage(ballImage, buttonX + playImage.width + (ballWidth / 2) - (ballWidth / 2), buttonY + (playImage.height / 4), ballWidth, ballHeight);
     }
-    drawbackground();
-    drawFrame();
-    drawsnow();
-    drawlogo();
-    drawplay();
-    if (ballVisible == true) {
-        ctx.drawImage(ballImage, ballX[0] - (ballSize / 2), ballY[0], ballSize, ballHeight);
-        ctx.drawImage(ballImage, ballX[1] - (ballSize / 2), ballY[1], ballSize, ballHeight);
-    }
-    drawCursor();
+}
+
+function drawFPS() {
     ctx.font = "bold 14px Arial";
     ctx.fillStyle = "#ffffff";
     ctx.fillText("FPS: " + FPS, 10, 20);
 }
 
-function checkPos(mouseEvent) {
-    mouseX = mouseEvent.pageX - this.offsetLeft;
-    mouseY = mouseEvent.pageY - this.offsetTop;
-    if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
-        ballVisible = true;
-        ballX[0] = buttonX[0] - (ballWidth / 2) - 2;
-        ballY[0] = buttonY[0];
-        ballX[1] = buttonX[0] + buttonWidth[0] + (ballWidth / 2); 
-        ballY[1] = buttonY[0];
-    }
-    else {
-        ballVisible = false; 
-    } 
-}
-
-function checkClick1(mouseEvent) {
-    if (mouseX > buttonX[0] && mouseX < buttonX[0] + buttonWidth[0] && mouseY > buttonY[0] && mouseY < buttonY[0] + buttonHeight[0]) {
-        sessionStorage.setItem("levelcount", 1);
-        mainMenuTheme.pause();
-
-        document.location.href = "game.html";
-
-        canvas.removeEventListener("mousemove", checkPos);
-        canvas.removeEventListener("mouseup", checkClick1);   
-    }
+function draw() {
+    drawbackground();
+    drawFrame();
+    drawsnow();
+    drawlogo();
+    drawplay();
+    drawBall();
+    drawCursor();
+    drawFPS();
 }
 
 var canvas = document.getElementById("myCanvas");
 var video = document.getElementById("myvideo");
-var ctx = canvas.getContext("2d");
-canvas.addEventListener("mousemove", checkPos);
-document.addEventListener("keydown", keyDownHandler, false); 							
-document.addEventListener("keyup", keyUpHandler, false);	
-canvas.addEventListener("mouseup", checkClick1);						
+var ctx = canvas.getContext("2d");							
       
 var backgroundImage = new Image(); 
 var snowImage = new Image();   
@@ -287,7 +214,7 @@ playImage.src = "images/play.png";
 ballImage.src = "images/ball.png";
 loadingImage.src = "images/loading.png";
 var Images = [];
-for (var i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++) {
     Images[i] = new Image();
 }
 Images[0].src = "images/background.png";
@@ -312,14 +239,10 @@ var ballWidth = 50;
 var ballHeight = 50;
    
 var ballVisible = false;
-var ballSize = ballWidth;
-var ballRotate = 0;
 var ballRadius = 10;
   
-var buttonX = [250, 250];
-var buttonY = [220, 400];
-var buttonWidth = [300, 450];
-var buttonHeight = [100, 100];
+var buttonX = 250;
+var buttonY = 220;
 
 var Pressed = false;							
 var flag = -1;
@@ -332,6 +255,7 @@ var initial_seed = 0;
 var model = new TinyYoloV3();
 var ready = 0;
 var FPS = 0;
+var circled = 0;
 
 model.load("models/yolov3-tiny_12k_graph/model.json").then(() => {
     beginVideo()

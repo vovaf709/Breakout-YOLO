@@ -60,24 +60,28 @@ function renderPredictions(boxes, canvas, context, mediasource, flip, FPS) {
 	
 	context.drawImage(mediasource, 0, 0, mediasource.width, mediasource.height);
 	context.restore();
-	context.font = '18px Arial';
+	context.font = "18px Arial";
 
-	for (let i = 0; i < boxes.length; i++) {
-  		context.beginPath();
+	for (var i = 0; i < boxes.length; i++) {
+		//context.beginPath();
+
   		context.fillStyle = colors[boxes[i]["label"]];
   		context.fillRect(boxes[i]["left"], boxes[i]["top"] - 17, boxes[i]["width"], 17);
   		context.rect(boxes[i]["left"], boxes[i]["top"], boxes[i]["width"], boxes[i]["height"]);
+
+		//console.log(i)
+		//console.log(boxes[i]["label"])
+		//console.log(boxes)
 
  		context.lineWidth = 1;
   		context.strokeStyle = colors[boxes[i]["label"]];
   		context.fillStyle = colors[boxes[i]["label"]];
   		context.fillRect(boxes[i]["left"] + (boxes[i]["width"] / 2), boxes[i]["top"] + (boxes[i]["height"] / 2), 5, 5);
-
 		context.stroke();
-		context.fillStyle = "#000000";  
+		context.fillStyle = "#000000";
   		context.fillText(
     		boxes[i]["label"] + ": " + (Math.round(100*parseFloat(boxes[i]["score"]))/100).toString(),
-    		boxes[i]["left"], boxes[i]["top"]);
+			boxes[i]["left"], boxes[i]["top"]);
 	}
 
 	context.font = "bold 12px Arial";
