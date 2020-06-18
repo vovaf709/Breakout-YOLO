@@ -63,6 +63,8 @@ kill -9 PID
 ![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/4.png)
 + use «pistol» gesture to detach ball from sticky paddle  
 ![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/3.png)  
+## Known issues
+* In Chromium cursor movement smoothing may not work
 ## Acknowledgments
 * [Yolov3 Keras implementation](https://github.com/qqwweee/keras-yolo3)
 * [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet)
