@@ -77,10 +77,11 @@ async function runDetection() {
             if (boxes[i]["label"] == "fist") {
                 fisted = 1;
                 prevPaddleX = paddleX;
-                let midval = boxes[i]["left"] + boxes[i]["width"] / 2;
-                //лютый подгон под canvas
-                midval = 1.5*midval - 5;
-                relativeX = midval;
+
+                let rawvalX = boxes[i]["left"] + boxes[i]["width"] / 2;
+
+                relativeX = 1.1 * (canvas.width * rawvalX / 640) - 0.05 * canvas.width;
+
                 if (relativeX > paddleWidth / 2 && relativeX < canvas.width - paddleWidth / 2) {
                     recPaddleX = relativeX - paddleWidth / 2;
                 }
