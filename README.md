@@ -1,5 +1,5 @@
 ![logo](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/logo_yolo.png)  
-Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) for details.
+Breakout-YOLO is a classic browser game that can be controlled by gestures. See [poster](https://github.com/vovaf709/Breakout-YOLO/blob/master/YOLO.pdf) and [post on habr](https://habr.com/ru/post/507562/)(russian) for details.
 ## Tasks
 - [x] structure code
 - [ ] add bounding box rendering in game
