@@ -59,7 +59,8 @@ kill -9 PID
 + use «finger up» gesture to click on buttons in main menu or to pause game  
 + use «fist» gesture to move paddle  
 + use «pistol» gesture to detach ball from sticky paddle  
-![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/gestures.jpeg)  
+![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/gestures.jpeg)
+![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/demo.gif)  
 ## Known issues
 * In Chromium cursor movement smoothing may not work
 ## Acknowledgments
