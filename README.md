@@ -62,7 +62,6 @@ kill -9 PID
 ![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/gestures.jpeg)
 
 Demonstration:
-
 ![demo](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/demo.gif)  
 ## Known issues
 * In Chromium cursor movement smoothing may not work
