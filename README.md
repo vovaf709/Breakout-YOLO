@@ -56,13 +56,10 @@ kill -9 PID
 |  Acer Aspire V5, i3 1.8GHz, GT 740M   | 16 |
 ## Game Controls 
 + use «circle» gesture to move cursor in main menu or to unpause game  
-![circle](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/2.jpg)
 + use «finger up» gesture to click on buttons in main menu or to pause game  
-![finger up](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/4.jpg)
 + use «fist» gesture to move paddle  
-![fist](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/3.jpg)
 + use «pistol» gesture to detach ball from sticky paddle  
-![pistol](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/1.jpg)  
+![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/gestures.jpeg)  
 ## Known issues
 * In Chromium cursor movement smoothing may not work
 ## Acknowledgments
