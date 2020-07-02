@@ -361,6 +361,10 @@ function drawLevel() {
     ctx.fillText("Level: " + levelcount, 100, 20);
 }
 
+function drawloading() {
+    ctx.drawImage(loadingImage, canvas.width / 2 - loadingImage.width / 2, canvas.height / 2 - loadingImage.height / 2);
+}
+
 function drawspeed() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#008000";
@@ -413,7 +417,7 @@ function bonusGiantPaddle() {
 }
 
 function bonusGiantPaddleCollisionDetection() {
-    if ((paddleX <= bonusPx + 4 * strDist) && (paddleX + paddleWidth >= bonusPx) && (bonusPy + 3*strDist >= canvas.height - paddleHeight) && (bonusPy <= canvas.height) && (bonusPActive == 0)) {
+    if ((paddleX <= bonusPx + 4 * strDist) && (paddleX + paddleWidth >= bonusPx) && (bonusPy + 3 * strDist >= canvas.height - paddleHeight) && (bonusPy <= canvas.height) && (bonusPActive == 0)) {
         bonusPActive++;
         tick.play();
         bonusPy = bonusPy + 100;
@@ -614,8 +618,7 @@ function drawBricks() {
     transFlag = 0;
 }
 
-function draw() {
-    playMusic();
+function checkMusic() {
     if ((lvl1ThemeSound.ended == true) && (levelcount == 1)) {
         sounded = 0;
     }
@@ -628,13 +631,9 @@ function draw() {
     else if ((lvl4ThemeSound.ended == true) && (levelcount == 4)) {
         sounded = 0;
     }
+}
 
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    drawbackground();
-    drawFrame();
-    drawBall();
-
+function opacityChange() {
     if (begun < 1) {
         opacity += opacityChanger;
         if (opacity <= 0.002 || opacity >= 1)
@@ -643,8 +642,7 @@ function draw() {
         ctx.drawImage(spaceStartImage, 60, 340, 800, 100);
         ctx.globalAlpha = 1.0;
     }
-
-    if (pause == 1 && begun == 1) {
+    else if (pause == 1 && begun == 1) {
         ctx.drawImage(pauseImage, 200, 220);
         opacity += opacityChanger;
         stopMusic();
@@ -655,31 +653,18 @@ function draw() {
         ctx.globalAlpha = opacity;
         ctx.globalAlpha = 1.0;
     }
-
-    if (pause == 0 && begun == 1) {
+    else if (pause == 0 && begun == 1) {
         opacity = 0.002;
         playMusic();
         dyP = 1;
         dyS = 1;
     }
+}
 
-    bonusGiantPaddleEffect();
-    drawBonusGiantPaddle();
-    bonusGiantPaddleCollisionDetection();
-    bonusStickyPaddleEffect();
-    drawBonusStickyPaddle();
-    bonusStickyPaddleCollisionDetection();
-
-    drawPaddle();
-    drawBricks();
-    collisionDetection();
-    drawScore();
-    drawLevel();
-    drawspeed();
-
-    var min = 1.2; 
-    var max = 6;  
-    var random = Math.random() * (max - min) + min; 
+function paddleCollision() {
+    let min = 1.2; 
+    let max = 6;  
+    let random = Math.random() * (max - min) + min; 
 
     if (x + speedX > canvas.width - ballRadius || x + speedX < ballRadius) {
         speedX = -speedX;
@@ -688,7 +673,7 @@ function draw() {
     if (y + speedY < ballRadius) {
         speedY = -speedY;
     } 
-    else if (y + speedY >= canvas.height-ballRadius-paddleHeight) {
+    else if (y + speedY >= canvas.height - ballRadius - paddleHeight) {
         if (x > paddleX + paddleWidth / 3 && x < paddleX + 2 * paddleWidth / 3) {
             speedY = -speedY;
         }
@@ -702,7 +687,7 @@ function draw() {
                 speedX = Math.abs(speedY) / random;
                 speedY = -Math.sqrt(Math.pow(speed, 2) - Math.pow(speedX, 2));
                 }
-                else if (y + speedY >= canvas.height-ballRadius) {
+                else if (y + speedY >= canvas.height - ballRadius) {
                     stopMusic();
                     tick.pause();
                     tick_fast.pause();
@@ -730,8 +715,64 @@ function draw() {
     }
 }
 
-function drawloading() {
-    ctx.drawImage(loadingImage, canvas.width / 2 - loadingImage.width / 2, canvas.height / 2 - loadingImage.height / 2);
+function step() {
+    if (ready == 1) {
+      draw();
+    }
+    else {
+        drawloading();
+    }
+    spacePressed = 0;
+    if (begun == 1) {
+        if (initial_seed % delay == 0) {
+            initial_seed = initial_seed % delay;
+            pauseVar = (pauseVar + 1) % pauseDelay;
+            runDetection();
+        }
+        paddleX = paddleX + (recPaddleX - prevPaddleX)/delay;
+    }
+    else {
+        if ((initial_seed % delay == 0)) {
+            initial_seed = initial_seed % delay;
+            model.detectAndBox(video).then(boxes => {
+                if (ready == 0) {
+                    ready = 1;
+                }
+                for (let i = 0; i < boxes.length; i++) {
+                    if ((boxes[i]["label"] == "finger up") && (pause == 0)) {
+                        spacePressed = false;
+                        begun = 1;
+                        pauseVar = (pauseVar + 1) % pauseDelay;
+                    }
+                }
+            })
+        }
+    }
+    pauseVar = (pauseVar + 1) % pauseDelay;
+    initial_seed++;
+}
+
+function draw() {
+    playMusic();
+    checkMusic();
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawbackground();
+    drawFrame();
+    drawBall();
+    opacityChange();
+    bonusGiantPaddleEffect();
+    drawBonusGiantPaddle();
+    bonusGiantPaddleCollisionDetection();
+    bonusStickyPaddleEffect();
+    drawBonusStickyPaddle();
+    bonusStickyPaddleCollisionDetection();
+    drawPaddle();
+    drawBricks();
+    collisionDetection();
+    drawScore();
+    drawLevel();
+    drawspeed();
+    paddleCollision();
 }
 
 //TODO: add worker.js
@@ -791,43 +832,6 @@ function drawloading() {
     }
 }
 */
-
-function step() {
-    if (ready == 1) {
-      draw();
-    }
-    else {
-        drawloading();
-    }
-    spacePressed = 0;
-    if (begun == 1) {
-        if (initial_seed % delay == 0) {
-            initial_seed = initial_seed % delay;
-            pauseVar = (pauseVar + 1) % pauseDelay;
-            runDetection();
-        }
-        paddleX = paddleX + (recPaddleX - prevPaddleX)/delay;
-    }
-    else {
-        if ((initial_seed % delay == 0)) {
-            initial_seed = initial_seed % delay;
-            model.detectAndBox(video).then(boxes => {
-                if (ready == 0) {
-                    ready = 1;
-                }
-                for (let i = 0; i < boxes.length; i++) {
-                    if ((boxes[i]["label"] == "finger up") && (pause == 0)) {
-                        spacePressed = false;
-                        begun = 1;
-                        pauseVar = (pauseVar + 1) % pauseDelay;
-                    }
-                }
-            })
-        }
-    }
-    pauseVar = (pauseVar + 1) % pauseDelay;
-    initial_seed++;
-}
 
 var video = document.getElementById("myvideo");
 var canvas = document.getElementById("myCanvas");
@@ -973,9 +977,9 @@ if (levelcount > 3) {
 else {
     var levelweight = levelcount;
 }
-for (var c = 0; c<brickColumnCount; c++) {
+for (var c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
-    for (var r = 0; r<brickRowCount; r++) {
+    for (var r = 0; r < brickRowCount; r++) {
         bricks[c][r] = { x: 0, y: 0, status: Math.floor(Math.random() * (max1 - min1)) + min1, weight: Math.floor(1 + Math.random() * levelweight), transparency: 0};
         if ((bricks[c][r].weight == 1) && (bricks[c][r].status == 1)) {
             mass1++;
