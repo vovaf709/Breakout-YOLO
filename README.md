@@ -60,7 +60,8 @@ kill -9 PID
 + use «fist» gesture to move paddle  
 + use «pistol» gesture to detach ball from sticky paddle  
 ![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/gestures.jpeg)
-![gestures](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/demo.gif)  
+Demonstration:
+![demo](https://github.com/vovaf709/Breakout-YOLO/blob/master/docs/images/demo.gif)  
 ## Known issues
 * In Chromium cursor movement smoothing may not work
 ## Acknowledgments
